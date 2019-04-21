@@ -4,7 +4,7 @@
   "description": "node script command line option handling utility",
   "main": "opt.js",
   "scripts": {
-    "test": "test.js"
+    "test": "./test.js"
   },
   "repository": {
     "type": "git",
