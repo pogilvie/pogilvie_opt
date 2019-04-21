@@ -1,4 +1,3 @@
-#!/usr/local/bin/node
 const
     chai = require('chai'),
   assert = chai.assert,
@@ -43,18 +42,21 @@ describe('opt', function() {
         it('should print out argument help', function() {
             
             const
-                program = new Program();
+                program = new Program()
 
+            console.log('\nthis is the help output ...')
             program.name('sodescribe: get ojbect information from a salesforce org')
                    .version('1.0.0')
                    .option('-s --sobject <myObject__c>', 'name of the Salesforce object to describe', false)
                    .option('-u --user <name@example.com>', 'DX authenticated user name or alias', true)
                    .help()
+            console.log('\n')
         })
 
         it('verify setting program name/version', function() {
 
-            const program = new Program();
+            const 
+                program = new Program();
 
             program.name('example')
 
@@ -69,7 +71,8 @@ describe('opt', function() {
 
         it('should be cause an exception when a short flag does not start with a dash', function() {
 
-            const program = new Program();
+            const 
+                program = new Program()
 
             try {
 
@@ -79,11 +82,35 @@ describe('opt', function() {
                 assert.fail('should not reach this line')
 
             } catch (ex) {
-                console.log('bad argument caused expected exception')
+                expect(ex).to.equal('short flag specifiers must start with a single dash')
             }
+        })
+
+        it('verify setting a flag', function() {
+
+            const 
+                program = new Program(),
+                   args = ['-L']
+
+            program.option('-L --labels', 'show labels', false)
+                   .parse(args)
+
+            expect(prgram.labels).to.equal(true)
 
         })
 
+        it('verify setting an argument', function() {
+
+            const 
+                program = new Program(),
+                   args = ['-u', 'someone@somewhere.org']
+
+            program.option('-u --user <username>', 'set username', true)
+                   .parse(args)
+
+            expect(prgram.user).to.equal('someone@somewhere.org')
+
+        })
         
     })
 })

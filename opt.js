@@ -36,13 +36,14 @@ Program.prototype.option = function (flag, description, required) {
 
     const    o = {flag: flag, description: description, required}
          split = o.flag.split(SPACE),
-      dashFlag = split[0], // required for all options
+      dashFlag = split[0] // required for all options
 
-    assert.equal(dashFlag[0], DASH)
+    if (dashFlag[0] != DASH)
+        throw 'short flag specifiers must start with a single dash'
 
     this.options.push(o)
 
     return this
 }
 
-module.exports =  Program;
+module.exports = Program;
