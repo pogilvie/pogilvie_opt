@@ -4,7 +4,7 @@
   "description": "node script command line option handling utility",
   "main": "opt.js",
   "scripts": {
-    "test": "./test.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,8 @@
     "url": "https://github.com/pogilvie/pogilvie_opt/issues"
   },
   "homepage": "https://github.com/pogilvie/pogilvie_opt#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4"
   }

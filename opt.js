@@ -28,7 +28,6 @@ Program.prototype.name = function (name) {
 }
 
 Program.prototype.version = function (version) {
-
     this.version = version
     return this
 }
@@ -46,4 +45,4 @@ Program.prototype.option = function (flag, description, required) {
     return this
 }
 
-module.exports = new Program();
+module.exports =  Program;
