@@ -6,7 +6,8 @@ const
     assert = chai.assert,
     should = chai.should(),
      SPACE = ' ',
-      DASH = '-'
+      DASH = '-',
+DOUBLEDASH = '--'
 
 var Program = function () {
 }
