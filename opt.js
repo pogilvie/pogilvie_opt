@@ -84,18 +84,18 @@ function setOption(currentToken, index, tokens) {
     if (found) {
 
         // for required arguments next token must be an argument
-        if (option.reqarg) {
+        if (option.reqarg || option.optarg) {
 
-            if (index + 1 == tokens.length) {
+            if (option.reqarg && index + 1 == tokens.length) {
                 throw `${option.longflag} requires an argument`
-            } else {
+            } else if (index + 1 < tokens.length) {
 
                 argumentToken = tokens[index + 1]
 
                 if (argumentToken.type == TT_argument) {
                     argument = argumentToken.value
                     index += 1
-                } else {
+                } else if (ption.reqarg) {
                     throw `${argumentToken.value} argument expected`
                 }
             }
