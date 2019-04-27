@@ -40,7 +40,15 @@ function findToken(word) {
             return { type: TT_shortflag, value: word } 
         else
             throw `illegal short flag ${word}`
+    }
 
+    result = word.match(LONGTOKEN)
+    if (result) {
+
+        if (word == result[result.index])
+            return { type: TT_longflag, value: word }
+        else
+            throw `illegal long flag ${word}`
     }
 
     // argument to a flag -s Account
@@ -104,10 +112,9 @@ function setOption(currentToken, index, tokens) {
         else
             this[option.name] = true
 
-        return ++index
     }
 
-    return index
+    return ++index
 }
 
 var Program = function () {
