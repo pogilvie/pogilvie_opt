@@ -1,7 +1,4 @@
 const
-        chai = require('chai'),
-      assert = chai.assert,
-      should = chai.should(),
        SPACE = ' ',
         DASH = '-',
   DOUBLEDASH = '--',
