@@ -10,10 +10,10 @@ const
    LONGTOKEN = /--\w{1,20}/,
       REQARG = /<\w{1,20}>/,
       OPTARG = /\[\w{1,20}\]/,
+         ARG = /[^-]\w{1,20}/,
 TT_shortflag = 1,            // Token Types  
  TT_longflag = 2,
  TT_argument = 3
-
 
  // regular expression matches return an array of descriptive information for
  // matches.  This function just returns the match part (index 0) if there is a 
@@ -29,7 +29,6 @@ function rematch(string, regex) {
         return null
 
 }
-
 
 // given a word return a token
 function findToken(word) {
@@ -47,6 +46,16 @@ function findToken(word) {
 
     }
 
+    // argument to a flag -s Account
+    result = word.match(ARG)
+    if (result) {
+
+        if (word == result[result.index]) 
+            return { type: TT_argument, value: word }
+        else
+            throw `syntax error illegal argument ${word}`
+    }
+
     throw `undefined token ${word}`
 
 }
@@ -56,11 +65,6 @@ function isFlag(token) {
 }
 
 function setOption(currentToken, index, tokens) {
-
-    console.log('options: '      + JSON.stringify(this.options))
-    console.log('currentToken: ' + JSON.stringify(currentToken))
-    console.log('index: '        + index)
-    console.log('tokens: '       + JSON.stringify(tokens))
 
     let option, found, argumentToken, argument
 
@@ -80,13 +84,13 @@ function setOption(currentToken, index, tokens) {
     if (found) {
 
         // for required arguments next token must be an argument
-        if (option.required) {
+        if (option.reqarg) {
 
-            if (index + 1 == this.tokens.length) {
+            if (index + 1 == tokens.length) {
                 throw `${option.longflag} requires an argument`
             } else {
 
-                argumentToken = this.tokens[index + 1]
+                argumentToken = tokens[index + 1]
 
                 if (argumentToken.type == TT_argument) {
                     argument = argumentToken.value
@@ -96,9 +100,8 @@ function setOption(currentToken, index, tokens) {
                 }
             }
         }
-        // rubber hits road
-        console.log('argument: ' + argument)
 
+        // rubber hits road
         if (argument)
             this[option.name] = argument
         else
@@ -108,7 +111,6 @@ function setOption(currentToken, index, tokens) {
     }
 
     return index
-
 }
 
 var Program = function () {
@@ -134,7 +136,7 @@ Program.prototype.version = function (version) {
     return this
 }
 
-Program.prototype.option = function (flag, description, required) {
+Program.prototype.option = function (flag, description) {
 
     const 
         longflag = rematch(flag, LONGTOKEN)
@@ -148,8 +150,7 @@ Program.prototype.option = function (flag, description, required) {
                 name : longflag.substring(2, longflag.length),
               reqarg : rematch(flag, REQARG),
               optarg : rematch(flag, OPTARG),
-         description : description,
-            required : required
+         description : description
     })
 
     return this
@@ -179,4 +180,4 @@ Program.prototype.parse = function(args) {
 
 }
 
-module.exports = Program;
+module.exports = Program

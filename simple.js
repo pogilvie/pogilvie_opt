@@ -1,7 +1,7 @@
 const
     Program = require('./opt.js'),
     program = new Program(),
-       args = ['-L', 'bar']
+       args = ['-L', 'baz']
 
 program.version('1.0.0')
 
