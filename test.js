@@ -69,23 +69,6 @@ describe('opt', function() {
 
         }) 
 
-        it('should be cause an exception when a short flag does not start with a dash', function() {
-
-            const 
-                program = new Program()
-
-            try {
-
-                program.name('example')
-                       .option('u --user <name@example.com', 'short flags must start with dash', true)
-
-                assert.fail('should not reach this line')
-
-            } catch (ex) {
-                expect(ex).to.equal('short flag specifiers must start with a single dash')
-            }
-        })
-
         it('verify setting a flag', function() {
 
             const 
@@ -95,7 +78,7 @@ describe('opt', function() {
             program.option('-L --labels', 'show labels', false)
                    .parse(args)
 
-            expect(prgram.labels).to.equal(true)
+            expect(program.labels).to.equal(true)
 
         })
 
