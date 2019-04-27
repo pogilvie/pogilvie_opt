@@ -39,29 +39,16 @@ describe('opt', function() {
     describe('program', function() {
 
         
-        it('should print out argument help', function() {
-            
-            const
-                program = new Program()
-
-            console.log('\nthis is the help output ...')
-            program.name('sodescribe: get ojbect information from a salesforce org')
-                   .version('1.0.0')
-                   .option('-s --sobject <myObject__c>', 'name of the Salesforce object to describe', false)
-                   .option('-u --user <name@example.com>', 'DX authenticated user name or alias', true)
-                   .help()
-            console.log('\n')
-        })
-
         it('verify setting program name/version', function() {
 
             const 
                 program = new Program();
 
+            // set program name
             program.name('example')
-
             expect(program.name).to.equal('example')
 
+            // set program version
             expect(program.version).to.be.a('function')
             program.version('1.0.0')
             expect(program.version).to.be.a('string')
@@ -75,7 +62,7 @@ describe('opt', function() {
                 program = new Program(),
                    args = ['-L']
 
-            program.option('-L --labels', 'show labels', false)
+            program.option('-L --labels', 'show labels')
                    .parse(args)
 
             expect(program.labels).to.equal(true)
@@ -88,10 +75,22 @@ describe('opt', function() {
                 program = new Program(),
                    args = ['-u', 'someone@somewhere.org']
 
-            program.option('-u --user <username>', 'set username', true)
+            program.option('-u --user <username>', 'set username')
                    .parse(args)
 
-            expect(prgram.user).to.equal('someone@somewhere.org')
+            expect(program.user).to.equal('someone@somewhere.org')
+
+        })
+
+        it('verify fail if a required argument is missing', function() {
+
+            const 
+                program = new Program(),
+                   args = ['-u']
+            
+            assert.throws(function() {
+                program.option('-u --user <username>', 'set username').parse(args)
+            }, '--user requires an argument', '--user requires an argument')
 
         })
         

@@ -2,12 +2,11 @@ const
        SPACE = ' ',
         DASH = '-',
   DOUBLEDASH = '--',
-  SHORTTOKEN = /^-\w{1,2}/,  // a word starting with a dash followed by 1 or 2 alpha
-                             // numeric characters
-   LONGTOKEN = /--\w{1,20}/,
-      REQARG = /<\w{1,20}>/,
-      OPTARG = /\[\w{1,20}\]/,
-         ARG = /[^-]\w{1,20}/,
+  SHORTTOKEN = /^-\w{1,2}/,                             // -x or -xy
+   LONGTOKEN = /--\w{1,20}/,                            // --hello
+      REQARG = /<\w{1,20}>/,                            // <ImRequired>  
+      OPTARG = /\[\w{1,20}\]/,                          // [ImOptional]
+         ARG = /[a-zA-Z1-9\.@]{1,30}/,                  // john@doe.com or foo
 TT_shortflag = 1,            // Token Types  
  TT_longflag = 2,
  TT_argument = 3
