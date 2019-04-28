@@ -50,14 +50,19 @@ console.log(program.unset)                   // undefined
 
 # Version 1.0.0 TODO
 
-- Features
-        - √ program.name
-        - √ program.version
-        - √ program.option() optional argument
-        - √ program.option() required argument
-        - √ program.option() simple flag
-        - option --help is automatically generated
+#### Features
+- √ program.name
+- √ program.version
+- √ program.option() optional argument
+- √ program.option() required argument
+- √ program.option() simple flag
+- option --help is automatically generated
 
-√ mocha test suite
+##### Tests
+- √ mocha test suite
 
+##### Integration
 - circle ci github integration
+
+##### Process
+- 
