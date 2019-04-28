@@ -1,4 +1,7 @@
 # pogilvie_opt
+
+[![CircleCI](https://circleci.com/gh/pogilvie/pogilvie_opt.svg?style=svg&circle-token=50d3041852fc202f48bf85a2e75eb24f45529574)](https://circleci.com/gh/pogilvie/pogilvie_opt)
+
 Command line option handling utility
 
 Currently this module is used by the sodescribe command line utility is not
@@ -48,11 +51,11 @@ console.log(program.unset)                   // undefined
 # Version 1.0.0 TODO
 
 - Features
-        √ program.name
-        √ program.version
-        √ program.option() optional argument
-        √ program.option() required argument
-        √ program.option() simple flag
+        - √ program.name
+        - √ program.version
+        - √ program.option() optional argument
+        - √ program.option() required argument
+        - √ program.option() simple flag
         - option --help is automatically generated
 
 √ mocha test suite
