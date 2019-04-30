@@ -64,5 +64,9 @@ console.log(program.unset)                   // undefined
 ##### Integration
 - circle ci github integration
 
+#### Spring cleaning
+- unpublish pillar 7
+- make pillar 7 repo private
+
 ##### Process
 - 
