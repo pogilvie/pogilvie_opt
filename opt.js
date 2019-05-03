@@ -163,7 +163,7 @@ Program.prototype.parse = function(args) {
     
     let index, currentToken, tokens = []
 
-    args.forEach(function(a) {
+    args.slice(2).forEach(function(a) {
 
         tokens.push(findToken(a))
 

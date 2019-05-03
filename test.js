@@ -1,9 +1,10 @@
 const
-    chai = require('chai'),
-  assert = chai.assert,
-  expect = chai.expect,
-  should = chai.should(),
- Program = require('./opt.js')
+ spawnsync = require('child_process').spawnSync,
+      chai = require('chai'),
+    assert = chai.assert,
+    expect = chai.expect,
+    should = chai.should(),
+   Program = require('./opt.js')
 
  function captureStream(stream) {
     let oldWrite = stream.write,
@@ -29,10 +30,10 @@ describe('opt', function() {
     
     // expect('hello world\n').to.be.equal(hook.captured())
     let hook
-    beforeEach(function() {
+    before(function() {
         hook = captureStream(process.stdout)
     })
-    afterEach(function() {
+    after(function() {
         hook.unhook()
     })
 
@@ -60,7 +61,7 @@ describe('opt', function() {
 
             const 
                 program = new Program(),
-                   args = ['-L']
+                   args = ['node', 'script','-L']
 
             program.option('-L --labels', 'show labels')
                    .parse(args)
@@ -73,7 +74,7 @@ describe('opt', function() {
 
             const 
                 program = new Program(),
-                   args = ['-u', 'someone@somewhere.org']
+                   args = ['node', 'script','-u', 'someone@somewhere.org']
 
             program.option('-u --user <username>', 'set username')
                    .parse(args)
@@ -86,14 +87,23 @@ describe('opt', function() {
 
             const 
                 program = new Program(),
-                   args = ['-u']
+                   args = ['node', 'script', '-u']
             
             assert.throws(function() {
                 program.option('-u --user <username>', 'set username').parse(args)
             }, '--user requires an argument', '--user requires an argument')
 
         })
-        
+
+        it('verify that a spawned program works', function() {
+
+            const
+                result = spawnsync('node', ['simple_real.js', '-s', 'Account'], {encoding: 'utf8'})
+            
+            expect('Account\n').to.be.equal(result.stdout);
+
+        })
+
     })
 })
 
