@@ -1,6 +1,6 @@
 {
   "name": "pogilvie_opt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "node script command line option handling utility",
   "main": "opt.js",
   "scripts": {
