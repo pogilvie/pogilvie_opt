@@ -83,6 +83,19 @@ describe('opt', function() {
 
         })
 
+        it('verify setting an argument ending in __c', function() {
+
+            const 
+                program = new Program(),
+                   args = ['node', 'script','-s', 'Hawk__c']
+
+            program.option('-s --sobject <sobject>', 'Setup target sobject')
+                   .parse(args)
+
+            expect(program.sobject).to.equal('Hawk__c')
+
+        })
+
         it('verify fail if a required argument is missing', function() {
 
             const 
