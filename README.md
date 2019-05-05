@@ -4,10 +4,10 @@
 
 Command line option handling utility
 
-Currently this module is used by the sodescribe command line utility is not
-currently targeting general application use.
+This module is used by the sodescribe command line utility is not
+currently targeting general use.
 
-pogilvie_opt is inspired by the very popular
+pogilvie_opt is inspired by the popular
 [commander](https://www.npmjs.com/package/commander) module.  I choose to write
 my own.  I wanted something that would automatically enforce required arguments
 instead of treating the next flag as an argument.  Example given two flags which
@@ -47,26 +47,3 @@ console.log(program.required)                // baz
 console.log(program.standard)                // true
 console.log(program.unset)                   // undefined
 ````
-
-# Version 1.0.0 TODO
-
-#### Features
-- √ program.name
-- √ program.version
-- √ program.option() optional argument
-- √ program.option() required argument
-- √ program.option() simple flag
-- option --help is automatically generated
-
-##### Tests
-- √ mocha test suite
-
-##### Integration
-- circle ci github integration
-
-#### Spring cleaning
-- unpublish pillar 7
-- make pillar 7 repo private
-
-##### Process
-- 

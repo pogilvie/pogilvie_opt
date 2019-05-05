@@ -83,6 +83,32 @@ describe('opt', function() {
 
         })
 
+        it('verify setting an argument ending in __c', function() {
+
+            const 
+                program = new Program(),
+                   args = ['node', 'script','-s', 'Hawk__c']
+
+            program.option('-s --sobject <sobject>', 'Setup target sobject')
+                   .parse(args)
+
+            expect(program.sobject).to.equal('Hawk__c')
+
+        })
+
+        it('verify setting an argument with an - inside it', function() {
+
+            const 
+                program = new Program(),
+                   args = ['node', 'script','-u', 'foo-bar']
+
+            program.option('-u --user <user>', 'user name')
+                   .parse(args)
+
+            expect(program.user).to.equal('foo-bar')
+
+        })
+
         it('verify fail if a required argument is missing', function() {
 
             const 

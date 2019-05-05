@@ -6,8 +6,8 @@ const
    LONGTOKEN = /--\w{1,20}/,                            // --hello
       REQARG = /<\w{1,20}>/,                            // <ImRequired>  
       OPTARG = /\[\w{1,20}\]/,                          // [ImOptional]
-         ARG = /\b[a-zA-Z1-9\.@]{1,30}/,                // john@doe.com or foo
-TT_shortflag = 1,            // Token Types  
+         ARG = /[\b[a-zA-Z1-9\.@_-]{1,30}/,              // john@doe.com or foo or foo-bar
+TT_shortflag = 1,                                       // Token Types  
  TT_longflag = 2,
  TT_argument = 3
 
