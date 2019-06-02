@@ -171,16 +171,14 @@ Program.prototype.parse = function(args) {
 
     index = 0
 
-    do {
+    while (index < tokens.length) {
         currentToken = tokens[index]  // should always be a short or long flag
 
         if (isFlag(currentToken))
             index = setOption.call(this, currentToken, index, tokens)
         else
             throw `unexpected argument ${currentToken.value}`
-
-    } while (index < tokens.length)
-
+    } 
 }
 
 module.exports = Program

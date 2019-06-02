@@ -8,7 +8,10 @@ program.version('1.0.0')
        .option('-s --sobject <object>', 'sobject')
        .parse(process.argv)
 
-console.log(program.sobject)
+if (!program.sobject)
+    console.log('no argument specified')
+else
+    console.log(program.sobject)
 
 
 
